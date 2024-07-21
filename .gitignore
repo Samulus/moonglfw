@@ -11,3 +11,6 @@ local/
 tutorials/
 src/TODO
 src/DIFF
+examples/moonglfw.dll
+examples/moonglfw.so
+examples/moonglfw.dylib

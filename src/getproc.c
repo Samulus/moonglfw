@@ -41,7 +41,7 @@ static void *Handle = NULL;
 #define LIBNAME "libglfw.so"
 static void *Handle = NULL;
 
-#elif defined(MINGW)
+#elif defined(_WIN32)
 #include <windows.h>
 #define LIBNAME "glfw3.dll"
 #define LLIBNAME L"glfw3.dll"
@@ -74,7 +74,7 @@ static int Init(lua_State *L)
     FP(glfw.fn) = dlsym(Handle, "glfw"#fn);                         \
 } while(0)
 
-#elif defined(MINGW)
+#elif defined(_WIN32)
     Handle = LoadLibraryW(LLIBNAME);
     if(!Handle)
         return luaL_error(L, "cannot load "LIBNAME);
@@ -264,7 +264,7 @@ void moonglfw_atexit_getproc(void)
     if(Handle) dlclose(Handle);
 #elif defined(LINUX)
     if(Handle) dlclose(Handle);
-#elif defined(MINGW)
+#elif defined(_WIN32)
     if(Handle) FreeLibrary(Handle);
 #endif
     }
@@ -276,4 +276,3 @@ int moonglfw_open_getproc(lua_State *L)
     Init(L);
     return 0;
     }
-

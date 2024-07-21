@@ -27,6 +27,12 @@
  * internal common header                                                       *
  ********************************************************************************/
 
+#ifdef _WIN32
+#define DLLEXPORT __declspec(dllexport)
+#else
+#define DLLEXPORT
+#endif
+
 #ifndef internalDEFINED
 #define internalDEFINED
 
@@ -176,7 +182,7 @@ void monitorCallback(GLFWmonitor *monitor, int event);
 int checkminversion(int major, int minor, int rev);
 #define errorCallback moonglfw_errorCallback
 void errorCallback(int ec, const char *descr);
-int luaopen_moonglfw(lua_State *L);
+DLLEXPORT int luaopen_moonglfw(lua_State *L);
 void moonglfw_utils_init(lua_State *L);
 void moonglfw_open_enums(lua_State *L);
 int moonglfw_open_getproc(lua_State *L);
